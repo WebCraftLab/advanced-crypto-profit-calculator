@@ -75,9 +75,7 @@ body        { background: var(--bg); font-family: 'Inter', sans-serif; color: va
   border-radius: 8px;
 }
 
-/* ══════════════════════════════════════════════════════════════════
-   AUTH SPINNER — full-screen while Clerk SDK initialises
-══════════════════════════════════════════════════════════════════ */
+/* ── AUTH SPINNER ── */
 #authSpinner {
   position: fixed; inset: 0; z-index: 300;
   display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -93,9 +91,7 @@ body        { background: var(--bg); font-family: 'Inter', sans-serif; color: va
   margin-bottom: 18px;
 }
 
-/* ══════════════════════════════════════════════════════════════════
-   AUTH GATE — blurred paywall overlay
-══════════════════════════════════════════════════════════════════ */
+/* ── AUTH GATE ── */
 #authGate {
   position: fixed; inset: 0; z-index: 200;
   display: flex; align-items: center; justify-content: center;
@@ -108,17 +104,11 @@ body        { background: var(--bg); font-family: 'Inter', sans-serif; color: va
 }
 #authGate.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
 
-/* Gate modal card */
 .gate-card {
-  position: relative;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 24px;
-  padding: 44px 40px 36px;
-  max-width: 470px; width: 100%;
+  position: relative; background: var(--surface); border: 1px solid var(--border); border-radius: 24px;
+  padding: 44px 40px 36px; max-width: 470px; width: 100%;
   box-shadow: 0 0 0 1px #ffffff06, 0 40px 80px -20px #000000CC, 0 0 130px -30px #F0B90B28;
-  text-align: center;
-  animation: fadeIn .5s ease both;
+  text-align: center; animation: fadeIn .5s ease both;
 }
 .gate-card::before {
   content: ''; position: absolute; inset: -1px; border-radius: 25px; padding: 1px;
@@ -127,11 +117,7 @@ body        { background: var(--bg); font-family: 'Inter', sans-serif; color: va
   -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none;
 }
 
-/* Feature list items in gate */
-.gate-feature {
-  display: flex; align-items: center; gap: 10px;
-  font-size: 13px; color: var(--text); text-align: left;
-}
+.gate-feature { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--text); text-align: left; }
 
 /* ── CTA Buttons ────────────────────────────────────────────────── */
 .btn-primary {
@@ -154,18 +140,11 @@ body        { background: var(--bg); font-family: 'Inter', sans-serif; color: va
 }
 .btn-secondary:hover { border-color: #F0B90B55; color: var(--amber); background: #F0B90B08; }
 
-/* ── Navbar user pill ───────────────────────────────────────────── */
 #userPill { display: none; align-items: center; gap: 10px; }
-#userAvatar {
-  width: 30px; height: 30px; border-radius: 50%;
-  border: 1.5px solid #F0B90B55; object-fit: cover;
-  background: var(--surface-hi);
-}
+#userAvatar { width: 30px; height: 30px; border-radius: 50%; border: 1.5px solid #F0B90B55; object-fit: cover; background: var(--surface-hi); }
 #signOutBtn {
-  font-family: 'JetBrains Mono', monospace; font-size: 11px;
-  color: var(--text-muted); background: var(--surface-hi);
-  border: 1px solid var(--border); border-radius: 8px;
-  padding: 5px 10px; cursor: pointer; transition: all .2s;
+  font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-muted); background: var(--surface-hi);
+  border: 1px solid var(--border); border-radius: 8px; padding: 5px 10px; cursor: pointer; transition: all .2s;
 }
 #signOutBtn:hover { border-color: #FF5C5C66; color: var(--red); background: #FF5C5C0D; }
 </style>
@@ -181,7 +160,6 @@ body        { background: var(--bg); font-family: 'Inter', sans-serif; color: va
 
 <div id="authGate" class="hidden" role="dialog" aria-modal="true" aria-label="Sign in to Gainwise Pro">
   <div class="gate-card">
-
     <div style="display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:24px;">
       <svg width="38" height="38" viewBox="0 0 28 28" fill="none" aria-hidden="true">
         <rect width="28" height="28" rx="8" fill="#F0B90B" fill-opacity=".14"/>
@@ -212,33 +190,19 @@ body        { background: var(--bg); font-family: 'Inter', sans-serif; color: va
       <div class="gate-feature"><span style="color:var(--teal);font-size:14px;flex-shrink:0;">✦</span> Persistent position registry with unrealized PnL</div>
     </div>
 
-    <a
-      id="lsCheckoutBtn"
-      href="https://whop.com/cryptotax-suite"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="btn-primary"
-      style="margin-bottom:11px;"
-    >
+    <a id="lsCheckoutBtn" href="https://whop.com/cryptotax-suite" target="_blank" rel="noopener noreferrer" class="btn-primary" style="margin-bottom:11px;">
       <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true">
         <path d="M7.5 1L9 5.5H14L10.2 8.1L11.5 13L7.5 10.3L3.5 13L4.8 8.1L1 5.5H6L7.5 1Z" fill="#15130A" fill-opacity=".65"/>
       </svg>
       Start 7-Day Free Trial — $29 / mo
     </a>
 
-    <button id="clerkSignInBtn" class="btn-secondary">
-      Already a member? Sign In →
-    </button>
-
-    <p style="font-size:11px;color:#8B92A630;margin-top:20px;font-family:'JetBrains Mono',monospace;">
-      Secured by Clerk · No credit card required for trial
-    </p>
+    <button id="clerkSignInBtn" class="btn-secondary">Already a member? Sign In →</button>
   </div>
 </div>
 
 <header class="sticky top-0 z-50 border-b border-[var(--border)] bg-[#0A0D13]/80 backdrop-blur-md">
   <nav class="max-w-7xl mx-auto px-6 lg:px-8 h-16 flex items-center justify-between">
-
     <a href="#" class="flex items-center gap-2.5">
       <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
         <rect width="28" height="28" rx="7" fill="#F0B90B" fill-opacity=".12"/>
@@ -251,7 +215,7 @@ body        { background: var(--bg); font-family: 'Inter', sans-serif; color: va
 
     <div class="flex items-center gap-3">
       <span id="premiumBadge" class="hidden font-mono text-xs bg-[#F0B90B1A] text-[var(--amber)] border border-[#F0B90B33] px-3 py-1 rounded-full">
-        Premium · $100/mo
+        Premium Active
       </span>
       <div id="userPill">
         <img id="userAvatar" src="" alt="User avatar" width="30" height="30">
@@ -259,24 +223,17 @@ body        { background: var(--bg); font-family: 'Inter', sans-serif; color: va
         <button id="signOutBtn">Sign Out</button>
       </div>
     </div>
-
   </nav>
 </header>
 
 <section class="relative overflow-hidden pt-12 pb-6 text-center">
   <div class="absolute inset-0 grid-glow pointer-events-none" aria-hidden="true"></div>
-  <h1 class="font-display font-bold text-4xl sm:text-5xl tracking-tight px-4">
-    Institutional Crypto Tax &amp; Intelligence Suite
-  </h1>
-  <p class="mt-3 text-[var(--text-muted)] max-w-xl mx-auto text-sm px-4">
-    Automated Tax-Loss Harvesting · Live Cross-Exchange Arbitrage · Multi-Currency Analytics
-  </p>
+  <h1 class="font-display font-bold text-4xl sm:text-5xl tracking-tight px-4">Institutional Crypto Tax &amp; Intelligence Suite</h1>
+  <p class="mt-3 text-[var(--text-muted)] max-w-xl mx-auto text-sm px-4">Automated Tax-Loss Harvesting · Live Cross-Exchange Arbitrage · Multi-Currency Analytics</p>
 </section>
 
 <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-28 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-
   <div class="lg:col-span-4 space-y-6">
-
     <div class="calc-card rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6">
       <h2 class="font-display font-semibold text-lg mb-4 text-[var(--amber)]">1. Log New Asset Position</h2>
       <form id="txForm" class="space-y-4" novalidate>
@@ -302,8 +259,7 @@ body        { background: var(--bg); font-family: 'Inter', sans-serif; color: va
           <input type="number" id="holdingSize" placeholder="e.g. 0.5" step="any" min="0"
             class="w-full bg-[#0A0D13] border border-[var(--border)] rounded-xl py-2.5 px-3 font-mono text-sm outline-none focus:border-[#F0B90B66] transition-colors" required>
         </div>
-        <button type="submit"
-          class="w-full bg-[var(--amber)] text-[#15130A] font-semibold text-sm py-3 rounded-xl hover:opacity-90 active:scale-[.99] transition-all shadow-lg shadow-[#F0B90B1A]">
+        <button type="submit" class="w-full bg-[var(--amber)] text-[#15130A] font-semibold text-sm py-3 rounded-xl hover:opacity-90 active:scale-[.99] transition-all shadow-lg shadow-[#F0B90B1A]">
           Commit Position to Registry
         </button>
       </form>
@@ -314,29 +270,22 @@ body        { background: var(--bg); font-family: 'Inter', sans-serif; color: va
         <h2 class="font-display font-semibold text-lg text-[var(--teal)]">2. Cross-Exchange Arbitrage</h2>
         <span class="w-2 h-2 rounded-full bg-[var(--teal)] ticker-pulse" aria-hidden="true"></span>
       </div>
-      <p class="text-xs text-[var(--text-muted)] mb-1">
-        Price inefficiencies across Binance · Bybit · Coinbase · OKX — refreshes every 30 s.
-      </p>
-      <p id="lastUpdated" class="text-[10px] text-[var(--text-muted)] mb-3 font-mono opacity-60" aria-live="polite">
-        Fetching live prices…
-      </p>
+      <p class="text-xs text-[var(--text-muted)] mb-1">Price inefficiencies across Binance · Bybit · Coinbase · OKX — refreshes every 30 s.</p>
+      <p id="lastUpdated" class="text-[10px] text-[var(--text-muted)] mb-3 font-mono opacity-60" aria-live="polite">Fetching live prices…</p>
       <div id="arbitrageList" class="space-y-2 font-mono text-xs" aria-live="polite">
-        <div class="shimmer" style="height:38px;"></div>
-        <div class="shimmer" style="height:38px;"></div>
         <div class="shimmer" style="height:38px;"></div>
         <div class="shimmer" style="height:38px;"></div>
       </div>
     </div>
+  </div>
 
-  </div><div class="lg:col-span-8 space-y-6">
-
+  <div class="lg:col-span-8 space-y-6">
     <div class="calc-card rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6">
       <div class="flex flex-wrap justify-between items-center gap-3 mb-4">
         <h2 class="font-display font-semibold text-xl">Active Cryptographic Asset Registry</h2>
         <div class="flex items-center gap-2">
           <label for="currencySelector" class="text-xs font-mono text-[var(--text-muted)]">Display Currency:</label>
-          <select id="currencySelector"
-            class="bg-[#1A1F2C] border border-[var(--border)] font-mono text-xs rounded px-2 py-1 outline-none text-[var(--amber)] cursor-pointer">
+          <select id="currencySelector" class="bg-[#1A1F2C] border border-[var(--border)] font-mono text-xs rounded px-2 py-1 outline-none text-[var(--amber)] cursor-pointer">
             <option value="USD">USD ($)</option>
             <option value="INR">INR (₹)</option>
             <option value="EUR">EUR (€)</option>
@@ -363,8 +312,7 @@ body        { background: var(--bg); font-family: 'Inter', sans-serif; color: va
     <div class="calc-card rounded-2xl border border-[#00D4AA33] bg-gradient-to-br from-[var(--surface)] to-[#00D4AA05] p-6">
       <div class="flex items-center gap-2.5 mb-4">
         <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-          <path d="M9 2L11 7H16L12 10.5L13.5 16L9 13L4.5 16L6 10.5L2 7H7L9 2Z"
-            fill="#00D4AA" fill-opacity=".15" stroke="#00D4AA" stroke-width="1.2"/>
+          <path d="M9 2L11 7H16L12 10.5L13.5 16L9 13L4.5 16L6 10.5L2 7H7L9 2Z" fill="#00D4AA" fill-opacity=".15" stroke="#00D4AA" stroke-width="1.2"/>
         </svg>
         <h2 class="font-display font-semibold text-lg text-[var(--teal)]">3. AI Tax-Loss Harvesting Engine</h2>
       </div>
@@ -384,14 +332,12 @@ body        { background: var(--bg); font-family: 'Inter', sans-serif; color: va
         </div>
       </div>
 
-      <div id="harvestingAdvice"
-        class="bg-[#1A1F2C] border border-[var(--border)] p-3.5 rounded-xl text-xs font-mono text-[var(--teal)] leading-relaxed"
-        aria-live="polite">
+      <div id="harvestingAdvice" class="bg-[#1A1F2C] border border-[var(--border)] p-3.5 rounded-xl text-xs font-mono text-[var(--teal)] leading-relaxed" aria-live="polite">
         💡 System Standing By: Input active loss/gain trades above to map legal offset loopholes.
       </div>
     </div>
-
-  </div></main>
+  </div>
+</main>
 
 <script>
 'use strict';
@@ -424,7 +370,7 @@ async function fetchLivePrices() {
 
 function runArbitrageScanner() {
   const container = document.getElementById('arbitrageList');
-  if (!Object.keys(livePrices).length) return;
+  if (!container || !Object.keys(livePrices).length) return;
   container.innerHTML = '';
   const exchanges = Object.keys(EXCHANGE_VARIANCE);
 
@@ -464,14 +410,75 @@ function renderDashboard() {
   const body = document.getElementById('ledgerBody');
   if(!body) return;
   body.innerHTML = '';
-  let gains = 0, losses = 0;
+  
+  let totalGains = 0;
+  let totalLosses = 0;
+
   if (!portfolio.length) {
     body.innerHTML = `<tr><td colspan="6" style="text-align:center;padding:32px 0;color:var(--text-muted);">No positions registered yet.</td></tr>`;
+  } else {
+    portfolio.forEach((asset, index) => {
+      const pnl = (asset.sellPrice - asset.buyPrice) * asset.size;
+      if (pnl > 0) totalGains += pnl; else totalLosses += Math.abs(pnl);
+
+      const row = document.createElement('tr');
+      row.className = 'border-b border-[var(--border)] h-12 align-middle';
+      row.innerHTML = `
+        <td class="font-bold text-[var(--text)]">${asset.symbol}</td>
+        <td>${asset.size}</td>
+        <td>${fmt(asset.buyPrice)}</td>
+        <td>${fmt(asset.sellPrice)}</td>
+        <td class="text-right font-bold ${pnl >= 0 ? 'text-[var(--teal)]' : 'text-[var(--red)]'}">${pnl >= 0 ? '+' : ''}${fmt(pnl)}</td>
+        <td class="text-center">
+          <button onclick="deleteAsset(${index})" class="text-[var(--red)] opacity-70 hover:opacity-100 font-mono text-[10px] bg-[#FF5C5C1A] px-2 py-1 rounded border border-[#FF5C5C33]">Drop</button>
+        </td>
+      `;
+      body.appendChild(row);
+    });
   }
-  document.getElementById('taxGains').textContent = fmt(gains);
-  document.getElementById('taxLosses').textContent = fmt(losses);
-  document.getElementById('netTaxLiability').textContent = fmt(0);
+
+  const netLiability = Math.max(0, (totalGains - totalLosses) * 0.30); // 30% tax bracket simulation
+  
+  document.getElementById('taxGains').textContent = fmt(totalGains);
+  document.getElementById('taxLosses').textContent = fmt(totalLosses);
+  document.getElementById('netTaxLiability').textContent = fmt(netLiability);
+
+  // Dynamic advice generator
+  const adviceBox = document.getElementById('harvestingAdvice');
+  if (totalLosses > 0 && totalGains > 0) {
+    adviceBox.textContent = `💡 AI Tax Optimization: You can legally offset ${fmt(Math.min(totalGains, totalLosses))} of gains using your registered underwater positions, saving up to 30% in potential tax liabilities.`;
+  } else if (totalLosses > 0) {
+    adviceBox.textContent = `💡 AI Strategy Found: Harvest these losses before year-end to carry them forward against future capital gains.`;
+  } else {
+    adviceBox.textContent = `💡 System Standing By: Input active loss/gain trades above to map legal offset loopholes.`;
+  }
 }
+
+function deleteAsset(index) {
+  portfolio.splice(index, 1);
+  renderDashboard();
+}
+
+// Form Handlers
+document.getElementById('txForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const symbol = document.getElementById('tokenSymbol').value.toUpperCase().trim();
+  const buyPrice = parseFloat(document.getElementById('buyPrice').value);
+  const sellPrice = parseFloat(document.getElementById('sellPrice').value);
+  const size = parseFloat(document.getElementById('holdingSize').value);
+
+  if (!symbol || isNaN(buyPrice) || isNaN(sellPrice) || isNaN(size)) return;
+
+  portfolio.push({ symbol, buyPrice, sellPrice, size });
+  renderDashboard();
+  this.reset();
+});
+
+// Currency Switcher Listener
+document.getElementById('currencySelector').addEventListener('change', function(e) {
+  currentCurrency = e.target.value;
+  renderDashboard();
+});
 
 // Clerk Authentication Logic
 const spinner = document.getElementById('authSpinner');
@@ -486,14 +493,23 @@ async function initClerk() {
     await window.Clerk.load();
     
     if (window.Clerk.user) {
-      // User logged in hai
       if(spinner) spinner.classList.add('hidden');
       if(gate) gate.classList.add('hidden');
+      
+      // Update header details
+      document.getElementById('premiumBadge').classList.remove('hidden');
+      document.getElementById('userPill').style.display = 'flex';
+      document.getElementById('userAvatar').src = window.Clerk.user.imageUrl;
+      document.getElementById('userEmail').textContent = window.Clerk.user.primaryEmailAddress.emailAddress;
+      
+      document.getElementById('signOutBtn').addEventListener('click', () => {
+        window.Clerk.signOut();
+      });
+
       renderDashboard();
       scannerTick();
       setInterval(scannerTick, 30000);
     } else {
-      // User logged in nahi hai -> Login Screen dikhao
       if(spinner) spinner.classList.add('hidden');
       if(gate) gate.classList.remove('hidden');
       
